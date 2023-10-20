@@ -13,10 +13,10 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={`bg-gray-500 ${inter.className}`}>
         <header className='container mx-auto pt-5 flex justify-between items-center'>
-          <h1 className='text-4xl font-bold'>Logo</h1>
-          <nav className='flex gap-5 justify-end text-lg'>
-            <a href="/">Home</a>
-            <a href="/newVehicle">New vehicle</a>
+          <h1 className='text-4xl md:text-5xl font-bold'>Logo</h1>
+          <nav className='flex gap-5 justify-end text-lg md:text-xl'>
+            <a className='hover:text-white duration-300' href="/">Home</a>
+            <a className='hover:text-white duration-300' href="/newVehicle">New vehicle</a>
           </nav>
         </header>
         
