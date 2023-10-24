@@ -1,24 +1,17 @@
-import VehicleCard from "@/components/vehicleCard"
+import ClientPage from "./clientPage"
 
-export default function Home() {
+export default async function Home() {
+  var vehicleList = await fetch(`${process.env.API_URL}/api/vehicle`, {
+    method: 'GET',
+    headers: {
+      "accept": "application/json",
+    },
+    cache: 'no-store'
+  }).then(data => data.json())
+
   return (
-    <main className='container mx-auto'>
-      <h1 className="text-3xl md:text-4xl font-semibold mt-28">Available vehicles</h1>
-
-      <div className="bg-gray-800 mt-2 py-4 px-3 rounded-xl flex flex-col gap-4 max-h-[35rem] overflow-y-scroll">
-        <VehicleCard />
-        <VehicleCard />
-        <VehicleCard />
-        <VehicleCard />
-        <VehicleCard />
-        <VehicleCard />
-        <VehicleCard />
-        <VehicleCard />
-        <VehicleCard />
-        <VehicleCard />
-        <VehicleCard />
-        <VehicleCard />
-      </div>
-    </main>
+    <ClientPage
+      vehicleList={vehicleList}
+    />
   )
 }
