@@ -11,7 +11,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`bg-gray-500 ${inter.className}`}>
+      <body className={`bg-[#393939] text-white ${inter.className}`}>
         <header className='container mx-auto pt-5 flex justify-between items-center'>
           <h1 className='text-4xl md:text-5xl font-bold'>Logo</h1>
           <nav className='flex gap-5 justify-end text-lg md:text-xl'>

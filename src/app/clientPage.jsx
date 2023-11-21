@@ -7,7 +7,7 @@ function ClientPage(props) {
     <main className='container mx-auto'>
       <h1 className="text-3xl md:text-4xl font-semibold mt-28">Available vehicles</h1>
 
-      <div className="bg-gray-800 mt-2 py-4 px-3 rounded-xl flex flex-col gap-4 max-h-[35rem] overflow-y-scroll">
+      <div className="bg-[#4f5156] mt-2 py-4 px-3 rounded-xl flex flex-col gap-4 h-[35rem] overflow-y-scroll">
         {
           props.vehicleList.map((v, index) => (
             <VehicleCard

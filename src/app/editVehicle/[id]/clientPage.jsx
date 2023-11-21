@@ -30,10 +30,10 @@ function ClientPage({
 
   return (
     <main className='container mx-auto'>
-      <h1 className='text-3xl md:text-4xl font-semibold mt-28'>Create new vehicle</h1>
+      <h1 className='text-3xl md:text-4xl font-semibold mt-28'>Edit vehicle</h1>
 
       <form
-        className='mx-auto p-3 bg-gray-800 rounded-xl max-w-xl grid grid-cols-1 sm:grid-cols-2 gap-4 mt-5'
+        className='mx-auto p-3 bg-gray-800 rounded-xl max-w-xl grid grid-cols-1 sm:grid-cols-2 gap-4 mt-5 text-black'
         onSubmit={handleSubmit(onSubmit)}
       >
         <input type="hidden" {...register("id")} value={id} />
