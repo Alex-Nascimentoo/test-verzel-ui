@@ -1,5 +1,6 @@
 import { Inter } from 'next/font/google'
 import './globals.css'
+import Image from 'next/image'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -11,13 +12,18 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`bg-[#393939] text-white ${inter.className}`}>
-        <header className='container mx-auto pt-5 flex justify-between items-center'>
+      <body className={`relative bg-white text-primary ${inter.className}`}>
+        <div className="absolute h-screen w-[30%] top-0 right-0 -z-10">
+          <Image
+            src={'/Triangulinhux.svg'}
+            alt='triangles'
+            fill
+            className='object-center'
+          />
+        </div>
+
+        <header className='container mx-auto pt-5 flex justify-center items-center'>
           <h1 className='text-4xl md:text-5xl font-bold'>Logo</h1>
-          <nav className='flex gap-5 justify-end text-lg md:text-xl'>
-            <a className='hover:text-white duration-300' href="/">Home</a>
-            <a className='hover:text-white duration-300' href="/newVehicle">New vehicle</a>
-          </nav>
         </header>
         
         {children}

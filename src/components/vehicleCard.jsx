@@ -1,21 +1,25 @@
 'use client'
 
-import React from 'react'
+import React, { useState } from 'react'
 import { BiTrash, BiPencil } from 'react-icons/bi'
+import Modal from './modal'
 
 function VehicleCard({
   id,
   model,
   brand,
   color,
-  price
+  price,
+  modalFunc
 }) {
   async function deleteVehicle() {
-    await fetch(`${process.env.API_URL}/api/vehicle/${id}`, {
-      method: 'DELETE'
-    })
+    // await fetch(`${process.env.API_URL}/api/vehicle/${id}`, {
+    //   method: 'DELETE'
+    // })
 
-    window.location.reload()
+    // window.location.reload()
+
+    modalFunc(model)
   }
 
   function handleClick() {
@@ -23,28 +27,31 @@ function VehicleCard({
   }
 
   return (
-    <div className='bg-sky-700 rounded-md p-2 grid grid-cols-8 text-center text-xl sm:text-2xl xl:text-3xl text-white font-semibold items-center'
+    <div className='bg-white shadow-xl rounded-md px-2 py-3 grid grid-cols-10 text-center text-2xl text-primary font-medium items-center'
       // onClick={handleClick}
     >
-      <div className='col-span-8 sm:col-span-5 sm:text-left'>
-        <h2 className=''>{model} • {color}</h2>
-        <p className='text-stone-400 xl:text-2xl'>{brand}</p>
-      </div>
+      
 
-      <h2 className='col-span-8 sm:col-span-2'>{price}</h2>
+      <p className='col-span-2 text-left'>{model}</p>
+
+      <p className='col-span-2'>{brand}</p>
+
+      <p className='col-span-3'>{color}</p>
+
+      <p className='col-span-2'>{price}</p>
 
       <h2
-        className='col-span-8 sm:col-span-1'
+        className='flex justify-center gap-5'
         // onClick={deleteVehicle}
       >
-        <BiTrash
-          className='float-right mr-12 hover:text-red-500 duration-300 cursor-pointer'
-          onClick={deleteVehicle}
+        <BiPencil
+          className='hover:text-accent duration-200 cursor-pointer text-3xl'
+          onClick={handleClick}
         />
 
-        <BiPencil
-          className='hover:text-gray-800 duration-200 cursor-pointer'
-          onClick={handleClick}
+        <BiTrash
+          className='hover:text-accent duration-200 cursor-pointer text-3xl'
+          onClick={deleteVehicle}
         />
       </h2>
     </div>
