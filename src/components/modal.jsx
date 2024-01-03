@@ -1,8 +1,18 @@
 import React from 'react'
+import { useRouter } from 'next/navigation'
 
 function Modal({ classes, modalFunc, vehicle }) {
+  const router = useRouter()
+
   async function deleteVehicle() {
     console.log("Delete vehicle")
+
+    await fetch(`${process.env.API_URL}/vehicles/${vehicle.id}`, {
+      method: 'DELETE'
+    })
+
+    modalFunc('')
+    router.refresh()
   }
 
   function handleCancel() {
@@ -14,7 +24,7 @@ function Modal({ classes, modalFunc, vehicle }) {
       <div className='container bg-white rounded-3xl shadow-lg w-96 py-4 text-center text-2xl'>
         <p className=''>Tem certeza que deseja excluir este veículo?</p>
         <br />
-        <p className='font-bold'>{ vehicle }</p>
+        <p className='font-bold'>{ vehicle.model }</p>
         <br />
 
         <div className="flex gap-5">

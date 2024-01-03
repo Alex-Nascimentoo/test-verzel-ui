@@ -6,10 +6,7 @@ import Modal from './modal'
 
 function VehicleCard({
   id,
-  model,
-  brand,
-  color,
-  price,
+  vehicle,
   modalFunc
 }) {
   async function deleteVehicle() {
@@ -19,7 +16,7 @@ function VehicleCard({
 
     // window.location.reload()
 
-    modalFunc(model)
+    modalFunc(vehicle)
   }
 
   function handleClick() {
@@ -32,13 +29,13 @@ function VehicleCard({
     >
       
 
-      <p className='col-span-2 text-left'>{model}</p>
+      <p className='col-span-2 text-left'>{vehicle.model}</p>
 
-      <p className='col-span-2'>{brand}</p>
+      <p className='col-span-2'>{vehicle.brand}</p>
 
-      <p className='col-span-3'>{color}</p>
+      <p className='col-span-3'>{vehicle.color}</p>
 
-      <p className='col-span-2'>{price}</p>
+      <p className='col-span-2'>{vehicle.price}</p>
 
       <h2
         className='flex justify-center gap-5'
