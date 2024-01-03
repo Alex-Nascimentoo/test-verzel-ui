@@ -3,6 +3,7 @@
 import React, { useState } from 'react'
 import { BiTrash, BiPencil } from 'react-icons/bi'
 import Modal from './modal'
+import { maskPrice } from '@/app/utils/masks'
 
 function VehicleCard({
   id,
@@ -35,7 +36,7 @@ function VehicleCard({
 
       <p className='col-span-3'>{vehicle.color}</p>
 
-      <p className='col-span-2'>{vehicle.price}</p>
+      <p className='col-span-2'>{maskPrice(vehicle.price)}</p>
 
       <h2
         className='flex justify-center gap-5'

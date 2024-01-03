@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useRouter } from 'next/navigation'
 import Image from 'next/image'
@@ -8,18 +8,19 @@ import Image from 'next/image'
 function ClientPage({ id, vehicle }) {
   const router = useRouter()
 
-  const [files, setFiles] = useState()
-  const [preview, setPreview] = useState('')
+  // const [files, setFiles] = useState()
+  const [preview, setPreview] = useState(vehicle.photo || '')
 
   const { register, handleSubmit } = useForm()
 
   function onSubmit(data) {
+
     fetch(`${process.env.API_URL}/vehicles/${id}`, {
       method: 'PUT',
       headers: {
           'content-type': 'application/json'
       },
-      body: JSON.stringify(data)
+      body: JSON.stringify({ ...data, photo: preview })
     })
 
     router.replace('/')
@@ -29,22 +30,26 @@ function ClientPage({ id, vehicle }) {
     document.getElementById('imgInput').click()
   }
 
-  function handleFile(e) {
-    if (e.target.files && e.target.files.length > 0) {
-      setFiles(e.target.files[0])
-    }
-  }
+  // function handleFile(e) {
+  //   if (e.target.files && e.target.files.length > 0) {
+  //     setFiles(e.target.files[0])
+  //   }
+  // }
 
-  useEffect(() => {
-    if (!files) return
+  // useEffect(() => {
+  //   if (!files) return
 
-    const imgUrl = URL.createObjectURL(files)
-    setPreview(imgUrl)
+  //   const imgUrl = URL.createObjectURL(files)
+  //   setPreview(imgUrl)
 
-    console.log(preview)
+  //   console.log(preview)
 
-    // URL.revokeObjectURL(imgUrl)
-  }, [files, preview])
+  //   // URL.revokeObjectURL(imgUrl)
+  // }, [files, preview])
+
+  // useEffect(() => {
+  //   setPreview(vehicle.photo)
+  // }, [vehicle])
 
   return (
     <main className='container mx-auto'>
@@ -60,10 +65,14 @@ function ClientPage({ id, vehicle }) {
         >
           <input
             type="file"
-            accept='image/jpg, image/jpeg, image/png'
+            accept='image/*'
             className='hidden'
             id="imgInput"
-            onChange={e => handleFile(e)}
+            // onChange={e => handleFile(e)}
+            onInput={e => {
+              const imgUrl = URL.createObjectURL(e.target.files[0])
+              setPreview(imgUrl)
+            }}
           />
           <Image
             src={preview}

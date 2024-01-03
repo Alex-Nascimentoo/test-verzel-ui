@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { useForm } from 'react-hook-form'
 import { useRouter } from 'next/navigation'
 import Image from 'next/image'
@@ -8,46 +8,59 @@ import Image from 'next/image'
 function ClientPage({ token }) {
   const router = useRouter()
 
-  const [files, setFiles] = useState()
+  // const [files, setFiles] = useState()
   const [preview, setPreview] = useState('')
+
+  // let filesInput = useRef()
 
   const { register, handleSubmit } = useForm()
 
   function onSubmit(data) {
+    // console.log(JSON.stringify({...data, picture: preview }))
+
     fetch(`${process.env.API_URL}/vehicles?token=${token}`, {
       method: 'POST',
       headers: {
-          'content-type': 'application/json'
+          'Content-Type': 'application/json'
       },
-      body: JSON.stringify(data)
+      body: JSON.stringify({ ...data, photo: preview })
     })
 
     router.replace('/')
   }
 
   function getImg() {
+    console.log("first")
     document.getElementById('imgInput').click()
   }
 
-  function handleFile(e) {
-    if (e.target.files && e.target.files.length > 0) {
-      setFiles(e.target.files[0])
-    }
-  }
+  // useEffect(() => {
+  //   console.log('cheguei')
+  //   if (!files) return
 
-  useEffect(() => {
-    if (!files) return
+  //   console.log('entrei')
+  //   const imgUrl = URL.createObjectURL(files.files[0])
+  //   setPreview(imgUrl)
 
-    const imgUrl = URL.createObjectURL(files)
-    setPreview(imgUrl)
+  //   console.log(imgUrl)
 
-    console.log(preview)
-
-    // URL.revokeObjectURL(imgUrl)
-  }, [files])
+  //   // URL.revokeObjectURL(imgUrl)
+  // }, [files])
 
   return (
     <main className='container mx-auto'>
+      {/* <input
+            type="file"
+            accept='image/jpg'
+            className='hidden'
+            id="imgInput"
+            onInput={e => {
+              const imgUrl = URL.createObjectURL(e.target.files[0])
+              setPreview(imgUrl)
+            }}
+            {...register("picture")}
+          /> */}
+
       <h1 className='text-3xl font-semibold mt-28'>Criar novo veículo</h1>
 
       <form
@@ -58,13 +71,29 @@ function ClientPage({ token }) {
           className='relative bg-red-400 row-span-4 rounded-2xl shadow-xl overflow-hidden cursor-pointer'
           onClick={getImg}
         >
+          {/* <input
+            type="file"
+            accept='image/jpg'
+            className='relative z-50'
+            id="imgInput"
+            // onChange={e => handleFile(e)}
+            onChange={(e) => {
+              if (e.target.files && e.target.files.length > 0) {
+                setFiles(e.target.files[0])
+              }
+            }}
+            {...register("picture")}
+          /> */}
           <input
             type="file"
-            accept='image/jpg, image/jpeg, image/png'
+            accept='image/*'
             className='hidden'
             id="imgInput"
-            onChange={e => handleFile(e)}
-            {...register("picture")}
+            onInput={e => {
+              const imgUrl = URL.createObjectURL(e.target.files[0])
+              setPreview(imgUrl)
+            }}
+            // {...register("picture")}
           />
           <Image
             src={preview}
