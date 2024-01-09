@@ -81,13 +81,6 @@ function ClientPage(props) {
         
         <label>
           Preço <br />
-          {/* <input
-            type="text"
-            className="text-lg px-2 py-1 rounded-lg shadow-md text-primary placeholder:text-gray focus:outline-none"
-            id=""
-            placeholder='Ex: 300.000'
-            onChange={e => setFilterPrice(e.target.value)}
-          /> */}
 
           <select
             className="text-lg px-2 py-2 min-w-[15rem] rounded-lg shadow-md bg-[#fff] text-primary placeholder:text-gray focus:outline-none"

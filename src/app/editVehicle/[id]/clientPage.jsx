@@ -8,7 +8,6 @@ import Image from 'next/image'
 function ClientPage({ id, vehicle }) {
   const router = useRouter()
 
-  // const [files, setFiles] = useState()
   const [preview, setPreview] = useState(vehicle.photo || '')
 
   const { register, handleSubmit } = useForm()
@@ -30,27 +29,6 @@ function ClientPage({ id, vehicle }) {
     document.getElementById('imgInput').click()
   }
 
-  // function handleFile(e) {
-  //   if (e.target.files && e.target.files.length > 0) {
-  //     setFiles(e.target.files[0])
-  //   }
-  // }
-
-  // useEffect(() => {
-  //   if (!files) return
-
-  //   const imgUrl = URL.createObjectURL(files)
-  //   setPreview(imgUrl)
-
-  //   console.log(preview)
-
-  //   // URL.revokeObjectURL(imgUrl)
-  // }, [files, preview])
-
-  // useEffect(() => {
-  //   setPreview(vehicle.photo)
-  // }, [vehicle])
-
   return (
     <main className='container mx-auto'>
       <h1 className='text-3xl font-semibold mt-28'>Editar veículo</h1>
@@ -68,7 +46,6 @@ function ClientPage({ id, vehicle }) {
             accept='image/*'
             className='hidden'
             id="imgInput"
-            // onChange={e => handleFile(e)}
             onInput={e => {
               const imgUrl = URL.createObjectURL(e.target.files[0])
               setPreview(imgUrl)
@@ -138,12 +115,6 @@ function ClientPage({ id, vehicle }) {
 
         <div className='flex flex-col'>
           <label className='text-primary text-xl font-semibold' htmlFor="">Categoria</label>
-          {/* <input
-            className='rounded-md p-1 px-2 shadow-md focus:outline-none'
-            type="text"
-            placeholder='SUV'
-            {...register("category")}
-          /> */}
           <select
             className='rounded-md p-1 px-2 shadow-md text-primary text-xl font-semibold bg-[#fff]'
             {...register("category")}
@@ -173,7 +144,6 @@ function ClientPage({ id, vehicle }) {
 
         <div className='flex flex-col'>
           <label className='text-primary text-xl font-semibold' htmlFor="">Transmissão</label>
-          {/* <input className='rounded-md p-1 px-2 shadow-md focus:outline-none' type="text" placeholder='Automático' {...register("transmission")} /> */}
           <select
             className='rounded-md p-1 px-2 shadow-md text-primary text-xl font-semibold bg-[#fff]'
             {...register("transmission")}
