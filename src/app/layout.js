@@ -23,7 +23,7 @@ export default function RootLayout({ children }) {
         </div>
 
         <header className='container mx-auto pt-5 flex justify-center items-center'>
-          <h1 className='text-4xl md:text-5xl font-bold'>Logo</h1>
+          <a href='/' className='text-4xl md:text-5xl font-bold z-10'>Logo</a>
         </header>
         
         {children}
