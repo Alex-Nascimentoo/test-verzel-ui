@@ -1,7 +1,8 @@
 'use client'
 
 import React from 'react'
-import { BiTrash, BiPencil } from 'react-icons/bi'
+import { useRouter } from 'next/navigation'
+import { BiTrash, BiPencil, BiInfoCircle } from 'react-icons/bi'
 import { maskPrice } from '@/app/utils/masks'
 
 function VehicleCard({
@@ -9,16 +10,15 @@ function VehicleCard({
   vehicle,
   modalFunc
 }) {
+  const router = useRouter()
+
   async function deleteVehicle() {
     modalFunc(vehicle)
   }
 
-  function handleClick() {
-    window.location.replace('/editVehicle/' + id)
-  }
-
   return (
-    <div className='bg-white shadow-xl rounded-md px-2 py-3 grid grid-cols-10 text-center text-2xl text-primary font-medium items-center'
+    <div
+      className='bg-white shadow-xl rounded-md px-2 py-3 grid grid-cols-10 text-center text-2xl text-primary font-medium items-center'
     >
       <p className='col-span-2 text-left'>{vehicle.model}</p>
 
@@ -29,9 +29,14 @@ function VehicleCard({
       <p className='col-span-2'>{maskPrice(vehicle.price)}</p>
 
       <h2 className='flex justify-center gap-5'>
+        <BiInfoCircle
+          className='hover:text-accent duration-200 cursor-pointer text-3xl'
+          onClick={() => router.push('/info/' + id)}
+        />
+        
         <BiPencil
           className='hover:text-accent duration-200 cursor-pointer text-3xl'
-          onClick={handleClick}
+          onClick={() => router.push('/editVehicle/' + id)}
         />
 
         <BiTrash
