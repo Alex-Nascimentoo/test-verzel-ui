@@ -20,15 +20,10 @@ function ClientPage({ token }) {
       headers: {
           'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ ...data, photo: preview })
+      body: JSON.stringify(data)
     })
 
-    router.replace('/')
-  }
-
-  function getImg() {
-    console.log("first")
-    document.getElementById('imgInput').click()
+    router.push('/')
   }
 
   return (
@@ -40,23 +35,22 @@ function ClientPage({ token }) {
         onSubmit={handleSubmit(onSubmit)}
       >
         <div
-          className='relative bg-red-400 row-span-4 rounded-2xl shadow-xl overflow-hidden cursor-pointer'
-          onClick={getImg}
+          className='relative bg-red-400 row-span-4 rounded-2xl shadow-xl cursor-pointer'
         >
           <input
-            type="file"
-            accept='image/*'
-            className='hidden'
-            id="imgInput"
-            onInput={e => {
-              const imgUrl = URL.createObjectURL(e.target.files[0])
-              setPreview(imgUrl)
-            }}
+            type="text"
+            className='absolute -top-7 focus:outline-none px-2 w-full text-gray bg-transparent'
+            placeholder='Img URL...'
+            {...register("photo")}
+            value={preview}
+            onChange={e => setPreview(e.target.value)}
           />
+
           <Image
             src={preview}
             alt='img'
             fill
+            className='object-cover rounded-2xl'
           />
         </div>
 
