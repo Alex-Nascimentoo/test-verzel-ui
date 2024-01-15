@@ -103,7 +103,7 @@ function ClientPage(props) {
       <div className="flex justify-between items-center mt-12 mb-3">
         <h1 className="text-3xl md:text-4xl font-semibold">Veículos disponíveis</h1>
 
-        <a href="/login" className='py-1 px-3 rounded-md shadow-md bg-accent text-white font-semibold text-2xl hover:px-5 hover:bg-primary duration-200'>Adicionar</a>
+        <a href="/login?route=newVehicle" className='py-1 px-3 rounded-md shadow-md bg-accent text-white font-semibold text-2xl hover:px-5 hover:bg-primary duration-200'>Adicionar</a>
       </div>
 
       <div className='grid grid-cols-10 mx-3 px-2 py-2 rounded-lg shadow-xl bg-primary text-white text-3xl font-bold'>

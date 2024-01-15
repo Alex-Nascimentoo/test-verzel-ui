@@ -1,9 +1,13 @@
 import React from 'react'
 import ClientPage from './clientPage'
 
-function Page() {
+function Page({ searchParams }) {
+  const route = searchParams.route
+  
   return (
-    <ClientPage />
+    <ClientPage
+      route={route}
+    />
   )
 }
 

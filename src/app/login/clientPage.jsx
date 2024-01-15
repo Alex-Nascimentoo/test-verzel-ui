@@ -4,7 +4,7 @@ import React from 'react'
 import { useForm } from 'react-hook-form'
 import { useRouter } from 'next/navigation'
 
-function ClientPage() {
+function ClientPage({ route }) {
   const router = useRouter()
 
   const { register, handleSubmit } = useForm()
@@ -16,7 +16,7 @@ function ClientPage() {
       body: JSON.stringify(data)      
     }).then(res => res.json()).then(json => json.token)
 
-    router.replace('/newVehicle?token=' + token)
+    router.replace(`/${route}?token=${token}`)
   }
 
   return (

@@ -36,7 +36,7 @@ function VehicleCard({
         
         <BiPencil
           className='hover:text-accent duration-200 cursor-pointer text-3xl'
-          onClick={() => router.push('/editVehicle/' + id)}
+          onClick={() => router.push('/login?route=editVehicle/' + id)}
         />
 
         <BiTrash
