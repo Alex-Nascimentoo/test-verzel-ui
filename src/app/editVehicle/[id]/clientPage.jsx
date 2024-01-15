@@ -5,7 +5,7 @@ import { useForm } from 'react-hook-form'
 import { useRouter } from 'next/navigation'
 import Image from 'next/image'
 
-function ClientPage({ id, vehicle }) {
+function ClientPage({ id, vehicle, token }) {
   const router = useRouter()
 
   const [preview, setPreview] = useState(vehicle.photo)
@@ -13,7 +13,7 @@ function ClientPage({ id, vehicle }) {
   const { register, handleSubmit } = useForm()
 
   function onSubmit(data) {
-    fetch(`${process.env.API_URL}/vehicles/${id}`, {
+    fetch(`${process.env.API_URL}/vehicles?id=${id}&token=${token}`, {
       method: 'PUT',
       headers: {
           'content-type': 'application/json'
@@ -22,6 +22,7 @@ function ClientPage({ id, vehicle }) {
     })
 
     router.push('/')
+    router.refresh()
   }
 
   return (
