@@ -11,6 +11,6 @@ __1.__ Após clonar o repositório localmente, rode ```npm run i``` para instala
 __2.__ Com as dependências instaladas, estamos prontos para rodar o projeto com o comando ```npm run dev```.
 
 ## Detalhes
-* Dentro do arquivo "next.config.js" foi criada variável de ambiente com a url da API, por padrão ela está como "http://localhost:5000".
+* Dentro do arquivo ```next.config.js``` foi criada variável de ambiente com a url da API, por padrão ela está como "http://localhost:5000".
 
-* A senha de admin é "bolinho", independente do nome de usuário.
+* A senha de admin padrão é "bolinho", independente do nome de usuário. (também localizada no arquivo ```next.config.js```)
