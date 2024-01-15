@@ -10,6 +10,12 @@ function ClientPage({ route }) {
   const { register, handleSubmit } = useForm()
 
   async function onSubmit(data) {
+    if (data.password !== process.env.ADMIN_PASSWORD) {
+      alert("Senha incorreta!")
+    
+      return
+    }
+
     const token = await fetch(`${process.env.API_URL}/login`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
