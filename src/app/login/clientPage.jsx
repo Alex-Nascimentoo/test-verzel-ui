@@ -16,7 +16,7 @@ function ClientPage({ route }) {
       return
     }
 
-    const token = await fetch(`${process.env.API_URL}/login`, {
+    const token = await fetch(`${process.env.API_URL}/users/login`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data)      
